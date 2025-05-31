@@ -27,30 +27,43 @@ public class AutomovelServiceImpl implements com.itau.ms_desafio_itau.service.IA
 
     @Override
     public void create(AutomovelRequestDTO requestDTO) {
-//        TODO: inserir validação de nome unico
-//        TODO: implementar erros de validação
+        log.info("Iniciando criação de um novo automóvel com dados: {}", requestDTO);
 
         try {
             Automovel automovel = mapper.toEntity(requestDTO);
             repository.save(automovel);
+            log.info("Automóvel salvo com sucesso: {}", automovel);
         } catch (Exception ex) {
+            log.error("Erro ao salvar o automóvel", ex);
             throw new IllegalStateException("Erro ao salvar o automóvel: " + ex.getMessage());
         }
     }
 
     @Override
     public List<AutomovelResponseDTO> listaAll() {
-        List<Automovel> automoveis = repository.findAll();
-        if (automoveis.isEmpty()) throw new EntityNotFoundException("Nenhum automóvel encontrado.");
+        log.info("Buscando todos os automóveis");
 
-        return  mapper.toResponseListDTO(automoveis);
+        List<Automovel> automoveis = repository.findAll();
+        if (automoveis.isEmpty()) {
+            log.warn("Nenhum automóvel encontrado");
+            throw new EntityNotFoundException("Nenhum automóvel encontrado");
+        }
+
+        log.info("Total de automóveis encontrados: {}", automoveis.size());
+        return mapper.toResponseListDTO(automoveis);
     }
 
     @Override
     public AutomovelResponseDTO findById(Long id) {
-        Automovel automovel = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Automóvel não encontrado com id: " + id));
+        log.info("Buscando automóvel com id: {}", id);
 
+        Automovel automovel = repository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Automóvel não encontrado com id: {}", id);
+                    return new EntityNotFoundException("Automóvel não encontrado com id: " + id);
+                });
+
+        log.info("Autmóvel encontrado: {}", automovel);
         return mapper.toResponseDTO(automovel);
     }
 }
