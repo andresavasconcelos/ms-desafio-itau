@@ -78,12 +78,8 @@ docdoctor
     cd ms-desafio-itau
     
     ```
-2. Altere o caminho dos arquivos gerados pelo H2 <src/main/resources/application.properties>
-  ```  
-    spring.datasource.url=jdbc:h2:file:C:/Users/<seuUsuario>/test;IFEXISTS=FALSE
-  ```
 
-3. Compile e execute o projeto:
+2. Compile e execute o projeto:
 
     ```bash
     mvn clean install
