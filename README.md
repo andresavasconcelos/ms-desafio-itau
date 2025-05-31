@@ -78,15 +78,18 @@ docdoctor
        cd ms-desafio-itau
     ```
 
-2. Compile e execute o projeto (sem docker):
+2. Compile:
     ```bash
       mvn clean install
-      mvn spring-boot:run
     ```
-3. Execute o projeto com Docker
+3. Execute o projeto com Docker. Certifique que o Docker esteja instalado e executando
     ```bash
-      docker build -t ms-desafio-itau .
-      docker run -p 8080:8080 ms-desafio-itau
+      cd docker
+      docker-compose up --build
+   ``` 
+   *** Sem o docker ***
+    ```bash
+      mvn spring-boot:run
     ```
 
 4. Acesse o serviço:
