@@ -2,6 +2,8 @@ package com.itau.ms_desafio_itau.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,8 +16,12 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErroResponse> handleNotFound(EntityNotFoundException ex) {
+        logger.warn("Recurso não encontrado: {}", ex.getMessage(), ex);
+
         ErroResponse erro = new ErroResponse(
                 HttpStatus.NOT_FOUND.value(),
                 "Recurso não encontrado",
@@ -26,6 +32,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErroResponse> handleBadRequest(IllegalArgumentException ex) {
+        logger.warn("Requisição inválida: {}", ex.getMessage(), ex);
+
         ErroResponse erro = new ErroResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Requisição inválida",
@@ -42,6 +50,8 @@ public class GlobalExceptionHandler {
                 .map(erro -> erro.getField() + ": " + erro.getDefaultMessage())
                 .collect(Collectors.toList());
 
+        logger.warn("Erro de validação: {}", erros, ex);
+
         ErroResponse erro = new ErroResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Erro de validação",
@@ -57,6 +67,8 @@ public class GlobalExceptionHandler {
                 .map(violation -> violation.getPropertyPath() + ": " + violation.getMessage())
                 .collect(Collectors.toList());
 
+        logger.warn("Violação de restrição: {}", erros, ex);
+
         ErroResponse erro = new ErroResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Violação de restrição",
@@ -67,6 +79,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErroResponse> handleGeral(Exception ex) {
+        logger.error("Erro interno inesperado: {}", ex.getMessage(), ex);
+
         ErroResponse erro = new ErroResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Erro interno",
