@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.itau</groupId>
-	<artifactId>ms-desafio-itau</artifactId>
+	<artifactId>ms_desafio_itau</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-desafio-itau</name>
+	<name>ms_desafio_itau</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
