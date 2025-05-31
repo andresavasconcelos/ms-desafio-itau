@@ -1,0 +1,6 @@
+2025-05-31 02:04:27.571655-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOMOVEIS_TB" already exists; SQL statement:
+CREATE TABLE automoveis_tb ( id BIGINT PRIMARY KEY, marca VARCHAR(255) NOT NULL, nome VARCHAR(255) NOT NULL, preco DECIMAL(19,2) NOT NULL, date_created TIMESTAMP ) [42101-232]
+2025-05-31 02:05:09.911404-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOMOVEIS_TB" already exists; SQL statement:
+CREATE TABLE AUTOMOVEIS_TB ( id BIGINT PRIMARY KEY, marca VARCHAR(255) NOT NULL, nome VARCHAR(255) NOT NULL, preco DECIMAL(19,2) NOT NULL, date_created TIMESTAMP ) [42101-232]
