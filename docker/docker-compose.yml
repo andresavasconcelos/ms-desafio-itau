@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: spring-h2-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - h2data:/data
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:file:~/test;DB_CLOSE_ON_EXIT=FALSE
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_H2_CONSOLE_ENABLED: "true"
+      SPRING_H2_CONSOLE_PATH: /h2-console
+      SPRING_SQL_INIT_MODE: always
+    restart: unless-stopped
+
+volumes:
+  h2data:
