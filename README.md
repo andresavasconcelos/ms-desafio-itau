@@ -74,18 +74,22 @@ docdoctor
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/andresavasconcelos/ms-desafio-itau.git
-    cd ms-desafio-itau
-    
+       git clone https://github.com/andresavasconcelos/ms-desafio-itau.git
+       cd ms-desafio-itau
     ```
 
-2. Compile e execute o projeto:
-
+2. Compile e execute o projeto (sem docker):
     ```bash
-    mvn clean install
+      mvn clean install
+      mvn spring-boot:run
+    ```
+3. Execute o projeto com Docker
+    ```bash
+      docker build -t ms-desafio-itau .
+      docker run -p 8080:8080 ms-desafio-itau
     ```
 
-3. Acesse o serviço:
+4. Acesse o serviço:
 
   - Serviço: `http://localhost:8080`
   - Banco de dados em memória: `http://localhost:8080/h2-console`
@@ -96,9 +100,9 @@ docdoctor
 
 Para executar os testes unitários:
 
-```bash
-mvn clean test
-```
+   ```bash
+     mvn clean test
+   ```
 ## 📦 Dados de exemplo
 
 Ao iniciar a aplicação, o banco H2 será preenchido com os seguintes automóveis:
