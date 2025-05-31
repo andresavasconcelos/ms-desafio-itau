@@ -101,7 +101,7 @@ docdoctor
 
 ### Executar Testes
 
-Para executar os testes unitários:
+Para executar os testes unitários (ainda não está disponível):
 
    ```bash
      mvn clean test
