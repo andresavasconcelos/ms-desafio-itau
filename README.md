@@ -10,9 +10,9 @@ Este projeto é um microsserviço que tem como objetivo gerenciar automóveis. D
 - **Cadastrar novo automóveis**: POST /api.
 - **Consulta de automóvel por ID:** GET /api/{id};
 - **Lista todos os automóveis:** GET /api;
-- **Atualiza informações do usuário**: PUT /api/{id}; | será implementado (previsao: 02/06/2025)
-- **Remove usuário**: DELETE /api/users/{id}; | será implementado (previsao: 02/06/2025)
-- **Lista usuários com paginação:** GET /api/paged; | será implementado (previsao: 02/06/2025)
+- **Atualiza informações do usuário**: PUT /api/{id}; | será implementado (previsao: 01/06/2025)
+- **Remove usuário**: DELETE /api/users/{id}; | será implementado (previsao: 01/06/2025)
+- **Lista usuários com paginação:** GET /api/paged; | será implementado (previsao: 01/06/2025)
 
 ## Documentação 
 <img src="assets/Swagger.png" alt="Logo do Projeto" width="1000"/>
