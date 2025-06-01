@@ -1,0 +1,6 @@
+FROM openjdk:17-jdk
+WORKDIR /opt/h2
+ADD https://www.h2database.com/h2-2022-12-19.zip .
+RUN apt update && apt install unzip -y && unzip h2-*.zip
+EXPOSE 8082
+CMD ["java", "-cp", "h2/bin/h2*.jar", "org.h2.tools.Server", "-web", "-webAllowOthers", "-tcp", "-tcpAllowOthers"]

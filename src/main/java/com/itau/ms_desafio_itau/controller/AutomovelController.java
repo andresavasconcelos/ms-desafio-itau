@@ -47,7 +47,7 @@ public class AutomovelController {
     })
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody AutomovelRequestDTO requestDTO) {
-        log.info("Requisição recebida para criação de automóvl");
+        log.info("Requisição recebida para criação de automóvel");
 
         service.create(requestDTO);
 

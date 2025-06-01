@@ -1,6 +1,7 @@
 package com.itau.ms_desafio_itau.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,3 +21,4 @@ public record ErroResponse(
         this(status, error, null, LocalDateTime.now(), errors);
     }
 }
+

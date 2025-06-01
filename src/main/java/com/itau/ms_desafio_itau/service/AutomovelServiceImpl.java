@@ -13,7 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutomovelServiceImpl implements com.itau.ms_desafio_itau.service.IAutomovelService {
+public class AutomovelServiceImpl implements IAutomovelService {
 
     private static final Logger log = LoggerFactory.getLogger(AutomovelServiceImpl.class);
 
