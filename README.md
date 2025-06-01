@@ -108,7 +108,7 @@ Para executar os testes unitários (ainda não está disponível):
    ```
 ## 📦 Dados de exemplo
 
-Ao iniciar a aplicação, o banco H2 será preenchido com os seguintes automóveis:
+Ao iniciar a aplicação use essa referencia de informação para criar os automoveis.
 
 | ID | Marca       | Nome           | Preço (R$)  |
 |----|-------------|----------------|-------------|
