@@ -1,6 +1,19 @@
 
 # Desafio Itau - gerenciador de automóveis
 
+## 💃 Acesse Produção!!!
+- Consulta carro de id 1: https://ms-desafio-itau.onrender.com/api/1
+- Consulta de todos os carros: https://ms-desafio-itau.onrender.com/api
+- Endpoint para criação de cadastro de carro: POST /api -> https://ms-desafio-itau.onrender.com/api
+- Exemplo de endpoint para criação de carro:
+```bash
+   {
+     "marca": "Chevrolet",
+     "nome": "Chevet",
+     "preco": 12.000
+   }
+```
+
 ## Descrição do Projeto
 
 Este projeto é um microsserviço que tem como objetivo gerenciar automóveis. Desse modo, é possível adicionar um carro, listar todos os carros ou listar um unico carro por id).
