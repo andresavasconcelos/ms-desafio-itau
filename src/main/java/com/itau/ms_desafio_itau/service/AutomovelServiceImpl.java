@@ -86,13 +86,8 @@ public class AutomovelServiceImpl implements IAutomovelService {
     }
 
     protected Automovel findById(Long id) {
-        Automovel automovel = repository.findById(id).orElseThrow(null);
-
-        if(automovel == null){
-            log.warn("Não foi possível remover o automoovel; ID não encontrado: {}", id);
-            throw new EntityNotFoundException("Automóvel não encontrado com id: " + id);
-        }
-
-        return automovel;
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Automóvel não encontrado com id: " + id));
     }
+
 }
