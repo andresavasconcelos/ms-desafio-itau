@@ -50,8 +50,6 @@ public class AutomovelController {
         log.info("Requisição recebida para criação de automóvel");
 
         service.create(requestDTO);
-
-        log.info("Automóvel criado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -64,8 +62,6 @@ public class AutomovelController {
         log.info("Requisição para listar todos os automóveis");
 
         List<AutomovelResponseDTO> responseList = service.listaAll();
-
-        log.info("Retornando {} automóveis", responseList.size());
         return ResponseEntity.ok(responseList);
     }
 
@@ -74,12 +70,32 @@ public class AutomovelController {
             content = @Content(schema = @Schema(implementation = Automovel.class)))
     @ApiResponse(responseCode = "404", description = "Automovel não encontrado")
     @GetMapping("/{id}")
-    public ResponseEntity<AutomovelResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<AutomovelResponseDTO> searchById(@PathVariable Long id) {
         log.info("Requisição para buscar automóvel com id: {}", id);
 
-        AutomovelResponseDTO automovel = service.findById(id);
-
-        log.info("Automóvel encontrado com id: {}", id);
+        AutomovelResponseDTO automovel = service.searchById(id);
         return ResponseEntity.ok(automovel);
+    }
+
+    @Operation(summary = "Atualizar automovel", description = "Atualiza os dados de um automovel existente pelo seu ID")
+    @ApiResponse(responseCode = "200", description = "Automovel atualizado com sucesso",
+            content = @Content(schema = @Schema(implementation = AutomovelResponseDTO.class)))
+    @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos")
+    @ApiResponse(responseCode = "404", description = "Automovel não encontrado")
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody AutomovelRequestDTO body){
+        log.info("Requisição para atualizar automóvel com id: {}", id);
+        service.update(id, body);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @Operation(summary = "Excluir automovel", description = "Remove um automovel existente pelo seu ID")
+    @ApiResponse(responseCode = "204", description = "Automovel excluído com sucesso")
+    @ApiResponse(responseCode = "404", description = "Automovel não encontrado")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        log.info("Requisição para deletar automóvel com id: {}", id);
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

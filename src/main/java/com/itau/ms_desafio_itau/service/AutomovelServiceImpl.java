@@ -54,16 +54,45 @@ public class AutomovelServiceImpl implements IAutomovelService {
     }
 
     @Override
-    public AutomovelResponseDTO findById(Long id) {
+    public AutomovelResponseDTO searchById(Long id) {
         log.info("Buscando automóvel com id: {}", id);
 
-        Automovel automovel = repository.findById(id)
-                .orElseThrow(() -> {
-                    log.warn("Automóvel não encontrado com id: {}", id);
-                    return new EntityNotFoundException("Automóvel não encontrado com id: " + id);
-                });
+        Automovel automovel = findById(id);
 
         log.info("Autmóvel encontrado: {}", automovel);
         return mapper.toResponseDTO(automovel);
+    }
+
+    @Override
+    public void update(Long id, AutomovelRequestDTO dto) {
+        log.info("Atualizando automóvel");
+
+        findById(id);
+        Automovel autoToUpdate = mapper.toEntity(dto);
+        autoToUpdate.setId(id);
+
+        repository.save(autoToUpdate);
+        log.info("Automovel atualizado com sucesso!");
+    }
+
+    @Override
+    public void delete(long id) {
+        log.info("Deletando automóvel com id: {}", id);
+
+        Automovel automovel = findById(id);
+
+        repository.deleteById(automovel.getId());
+        log.info("Autmóvel deletado com sucesso!");
+    }
+
+    protected Automovel findById(Long id) {
+        Automovel automovel = repository.findById(id).orElseThrow(null);
+
+        if(automovel == null){
+            log.warn("Não foi possível remover o automoovel; ID não encontrado: {}", id);
+            throw new EntityNotFoundException("Automóvel não encontrado com id: " + id);
+        }
+
+        return automovel;
     }
 }

@@ -11,6 +11,10 @@ public interface IAutomovelService {
 
     List<AutomovelResponseDTO> listaAll();
 
-    AutomovelResponseDTO findById(Long id);
+    AutomovelResponseDTO searchById(Long id);
+
+    void update(Long id, AutomovelRequestDTO dto);
+
+    void delete(long id);
 
 }
