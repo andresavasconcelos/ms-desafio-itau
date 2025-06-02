@@ -37,6 +37,13 @@ public class Automovel {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime date; //Coloquei dateTime, mas confundi com o mysql
 
+    public Automovel(long l, String honda, String civic, BigDecimal bigDecimal, LocalDateTime date) {
+    }
+
+    public Automovel() {
+
+    }
+
     public Long getId() {
         return id;
     }
